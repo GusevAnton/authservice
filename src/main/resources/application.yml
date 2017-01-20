@@ -4,7 +4,7 @@ authentication:
     oauth:
         clientId: app
         secret: secret
-        tokenValidityInSeconds: 60
+        tokenValidityInSeconds: 600
 address: http://localhost:${server.port}/confirm/%s/%s
 security:
   basic:
