@@ -1,0 +1,39 @@
+server:
+     port: 8000
+authentication:
+    oauth:
+        clientId: app
+        secret: secret
+        tokenValidityInSeconds: 600
+address: http://localhost:${server.port}/confirm/%s/%s
+security:
+  basic:
+    enabled: false
+  ignored: /css/**,/js/**,/favicon.ico,/webjars/**,/register,/confirm/**
+management:
+    security:
+        enabled: false
+hystrix:
+    command:
+        default:
+            execution:
+                timeout:
+                    enabled: false
+logging:
+  path: security/log
+  level:
+      org.springframework.web: DEBUG
+      com.mycompany: DEBUG
+      org.springframework.security: DEBUG
+spring:
+    application:
+      name: authservice
+    cloud:
+        config:
+             discovery:
+                  enabled: true
+                  serviceId: configservice
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8004/eureka
