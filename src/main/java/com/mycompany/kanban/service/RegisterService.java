@@ -34,7 +34,7 @@ public class RegisterService {
 
     private ExecutorService executorService = Executors.newCachedThreadPool();
 
-    public void registerUser(User userRequest) {
+    public User registerUser(User userRequest) {
         User user = new User();
         user.setUsername(userRequest.getUsername());
         user.setEmail(userRequest.getEmail());
@@ -48,6 +48,7 @@ public class RegisterService {
 
         userDatabaseClient.saveUser(user);
         sendEmail(user);
+        return user;
     }
 
     @Async
@@ -57,12 +58,13 @@ public class RegisterService {
                         user.getActivationKey()));
     }
 
-    public void confirm(User user, String activationKey) {
+    public User confirm(User user, String activationKey) {
         if (activationKey.equals(user.getActivationKey())) {
             user.setActivated(true);
             user.setActivationKey(null);
             userDatabaseClient.saveUser(user);
         }
+        return user;
     }
 
 }
