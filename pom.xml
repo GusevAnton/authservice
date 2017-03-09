@@ -52,7 +52,7 @@
 			<version>1.16.10</version>
 		</dependency>
 		<dependency>
-			<groupId>com.canaban.com</groupId>
+			<groupId>com.canaban.common</groupId>
 			<artifactId>common</artifactId>
 			<version>1.0</version>
 		</dependency>
